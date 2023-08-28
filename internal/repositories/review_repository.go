@@ -7,21 +7,21 @@ import (
 	"product-catalogue-Telkom-LKPP/internal/models"
 )
 
-type ProductRepository interface {
+type ReviewRepository interface {
 	CreateProduct(product *models.Product) error
 }
 
-type productRepository struct {
+type reviewRepository struct {
 	DB *sql.DB
 }
 
-func NewProductRepository(db *sql.DB) ProductRepository {
+func NewReviewRepository(db *sql.DB) ProductRepository {
 	return &productRepository{
 		DB: db,
 	}
 }
 
-func (repo *productRepository) CreateProduct(product *models.Product) error {
+func (repo *productRepository) CreateReview(product *models.Product) error {
 	// Convert images slice to JSONB data
 	imagesJSON, err := json.Marshal(product.Images)
 	if err != nil {
