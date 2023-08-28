@@ -14,7 +14,34 @@ Before you begin, ensure you have met the following requirements:
 
 To get started, follow these steps:
 
-1. Clone this repository:
+1. Clone this repository
+2. Run this PostgreSQL script
+
+```
+-- Create products table
+CREATE TABLE products (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    sku VARCHAR(50) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    category VARCHAR(50),
+    etalase VARCHAR(50),
+    images JSONB, -- Store image metadata as JSONB
+    weight DECIMAL(10, 2),
+    price DECIMAL(10, 2),
+    created_at TIMESTAMP WITH TIME ZONE CURRENT_TIMESTAMP
+);
+
+-- Create product_reviews table
+CREATE TABLE product_reviews (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    product_id UUID REFERENCES products(id),
+    rating INT CHECK (rating >= 1 AND rating <= 5),
+    review_comment TEXT
+);
+
+```
+
 2. run this command
    `go mod tidy`
 3. run the project with this command
