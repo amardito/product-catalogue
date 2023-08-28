@@ -25,9 +25,13 @@ The API server should now be running at http://localhost:8080.
 ## Endpoints
 
 GET /products - Search for products with optional query parameters.
+
 POST /products - Create a new product.
+
 PUT /products/{productID} - Update an existing product by ID.
+
 GET /products/{productID} - Get a product by ID.
+
 GET /products/images/{imageID} - Get an image by ID.
 
 ## Postman Documentation
