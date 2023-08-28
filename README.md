@@ -43,9 +43,13 @@ CREATE TABLE product_reviews (
 ```
 
 2. run this command
-   `go mod tidy`
+   ```
+   go mod tidy
+   ```
 3. run the project with this command
-   `go run main.go`
+   ```
+   go run main.go
+   ```
 
 The API server should now be running at http://localhost:8080.
 
