@@ -20,4 +20,4 @@
 # Go workspace file
 go.work
 
-# /internal/repositories/images/
+/internal/repositories/images/
