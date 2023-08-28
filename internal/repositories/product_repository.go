@@ -33,11 +33,15 @@ func (repo *productRepository) GetProductByID(productID string) (*models.Product
 	// Prepare the SQL statement
 	query := `
 			SELECT
-					id, sku, title, description, category, etalase, images, weight, price
-			FROM
-					products
+					p.id, p.sku, p.title, p.description, p.category, p.etalase, p.images, p.weight, p.price,
+					COALESCE(AVG(pr.rating),0) as rating
+				FROM
+					products p
+				LEFT JOIN
+					product_reviews pr on p.id = pr.product_id
 			WHERE
-					id = $1
+				p.id = $1
+			GROUP BY p.id
 	`
 
 	row := repo.DB.QueryRow(query, productID)
@@ -56,6 +60,7 @@ func (repo *productRepository) GetProductByID(productID string) (*models.Product
 		&imagesJSON,
 		&product.Weight,
 		&product.Price,
+		&product.Rating,
 	)
 	if err != nil {
 		return nil, err
@@ -83,7 +88,7 @@ func (repo *productRepository) SearchProducts(query *models.ProductQuery, page, 
 		p.images,
 		p.weight,
 		p.price,
-		AVG(pr.rating) as rating
+		COALESCE(AVG(pr.rating),0) as rating
 	from
 		products p
 	left join
@@ -168,6 +173,7 @@ func (repo *productRepository) SearchProducts(query *models.ProductQuery, page, 
 			&imagesJSON,
 			&product.Weight,
 			&product.Price,
+			&product.Rating,
 		)
 		if err != nil {
 			return nil, err
