@@ -37,3 +37,4 @@ GET /products/images/{imageID} - Get an image by ID.
 ## Postman Documentation
 
 For detailed usage and examples, please refer to the Postman Documentation.
+https://documenter.getpostman.com/view/9503318/2s9Y5YSi71#intro
