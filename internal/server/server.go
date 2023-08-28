@@ -10,7 +10,7 @@ import (
 	"github.com/go-chi/chi"
 )
 
-func NewRouter(productHandler *handlers.ProductHandler) http.Handler {
+func NewRouter(productHandler *handlers.ProductHandler, reviewHandler *handlers.ReviewHandler) http.Handler {
 	r := chi.NewRouter()
 
 	// Add a handler for the root path
@@ -29,7 +29,8 @@ func NewRouter(productHandler *handlers.ProductHandler) http.Handler {
 	})
 
 	// Group the routes under "/reviews"
-	// TODO: create review product
-
+	r.Route("/review", func(reviewRouter chi.Router) {
+		reviewRouter.Post("/", reviewHandler.CreateReview)
+	})
 	return r
 }

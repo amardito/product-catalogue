@@ -20,7 +20,10 @@ func main() {
 	productRepo := repositories.NewProductRepository(db)
 	productHandler := handlers.NewProductHandler(productRepo)
 
-	router := server.NewRouter(productHandler)
+	reviewRepo := repositories.NewReviewRepository(db)
+	reviewHandler := handlers.NewReviewHandler(reviewRepo)
+
+	router := server.NewRouter(productHandler, reviewHandler)
 
 	fmt.Println("Server is running properly")
 	http.ListenAndServe(":8080", router)

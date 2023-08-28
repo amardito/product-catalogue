@@ -34,6 +34,8 @@ GET /products/{productID} - Get a product by ID.
 
 GET /products/images/{imageID} - Get an image by ID.
 
+POST /review - Create a new review for product
+
 ## Postman Documentation
 
 For detailed usage and examples, please refer to the Postman Documentation.

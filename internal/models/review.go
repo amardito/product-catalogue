@@ -5,7 +5,8 @@ import (
 )
 
 type Review struct {
-	ID      uuid.UUID `json:"id"`
-	Rating  int       `json:"rating"`
-	Comment string    `json:"comment"`
+	ID        uuid.UUID `json:"id"`
+	ProductID uuid.UUID `json:"product_id"`
+	Rating    int       `json:"rating"`
+	Comment   string    `json:"comment"`
 }
